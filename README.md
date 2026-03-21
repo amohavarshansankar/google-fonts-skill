@@ -2,6 +2,8 @@
 
 Claude Code skill for typography system generation using Google Fonts. Searches 1,923 enriched fonts, suggests singles or pairs, and generates complete CSS/Tailwind typographic systems.
 
+![CleanShot 2026-03-21 at 19 08 00](https://github.com/user-attachments/assets/937a8a6c-d6ab-4f39-bfa4-848450932b32)
+
 ## What It Does
 
 - **Font search** with BM25 ranking across personality, mood, and use-case tags
@@ -54,6 +56,8 @@ python3 scripts/generate-css.py --font "Inter" --scale major-third --format all
 python3 scripts/generate-css.py --heading "Playfair Display" --body "Inter" \
   --scale perfect-fourth --format all
 ```
+
+![CleanShot 2026-03-21 at 19 08 08](https://github.com/user-attachments/assets/c19d43a4-55d1-4dfc-a9a7-d6f82c507a0f)
 
 ## Data
 
