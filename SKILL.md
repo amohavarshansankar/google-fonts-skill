@@ -118,5 +118,19 @@ python3 scripts/generate-css.py --heading "Space Grotesk" --body "DM Sans" \
 - Google Fonts `<link>` embed with preconnect
 - Responsive breakpoint guidance
 
+## Showcase Gallery
+
+100 pre-made typography systems applied to fictional projects. Browse at `showcase/index.html`
+or reference `showcase/showcase.json` for programmatic access.
+
+When a user says "show me examples", "pick a style for me", or "what would work for a SaaS app",
+read `showcase/showcase.json` and filter by project type to suggest a pre-built system.
+
+### Regenerating
+
+```bash
+python3 scripts/generate-showcase.py
+```
+
 For detailed typographic theory, read `references/typographic-rhythm.md`.
 For pairing decision trees, read `references/pairing-principles.md`.

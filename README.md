@@ -11,6 +11,7 @@ Claude Code skill for typography system generation using Google Fonts. Searches 
 - **Pair mode** — 73 proven pairings with contrast type classification
 - **CSS generation** — custom properties, Tailwind config, Google Fonts embed links
 - **8 modular scales** — from minor-second (dense UI) to golden-ratio (hero sections)
+- **100-project showcase** — browsable gallery of pre-made typography systems
 
 ## Installation
 
@@ -80,6 +81,16 @@ python3 scripts/generate-css.py --heading "Playfair Display" --body "Inter" \
 | perfect-fifth | 1.5 | Display-heavy |
 | golden-ratio | 1.618 | Hero sections |
 
+## Showcase Gallery
+
+100 pre-made typography systems applied to fictional projects. Open `showcase/index.html` to browse, or reference `showcase/showcase.json` programmatically.
+
+Regenerate with:
+
+```bash
+python3 scripts/generate-showcase.py
+```
+
 ## Project Structure
 
 ```
@@ -90,11 +101,16 @@ python3 scripts/generate-css.py --heading "Playfair Display" --body "Inter" \
 │   ├── pairings.csv                  # Proven font pairings
 │   └── scales.csv                    # Modular type scales
 ├── scripts/
-│   ├── core.py                       # BM25 search engine
+│   ├── core.py                       # Search engine + CSS generation
 │   ├── search.py                     # CLI search interface
-│   ├── generate-css.py               # CSS/Tailwind generator
+│   ├── generate-css.py               # CSS/Tailwind CLI wrapper
+│   ├── generate-showcase.py          # Showcase gallery generator
 │   ├── fetch-and-enrich.py           # Font data enrichment pipeline
 │   └── build-pairings.py             # Pairing data builder
+├── showcase/
+│   ├── index.html                    # Browsable gallery (100 cards)
+│   ├── showcase.json                 # Machine-readable manifest
+│   └── pages/                        # 100 individual HTML previews
 └── references/
     ├── typographic-rhythm.md         # Scale math and spacing rules
     └── pairing-principles.md         # Contrast theory and decision trees
