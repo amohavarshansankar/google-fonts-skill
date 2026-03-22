@@ -22,13 +22,22 @@ Claude Code skill for typography system generation using Google Fonts. Searches 
 
 ## Installation
 
-### From Marketplace (recommended)
+### MCP Server (any agent)
 
 ```bash
-# Add the marketplace
-claude plugin marketplace add sliday/google-fonts-skill
+uvx google-fonts-mcp
+```
 
-# Install the plugin
+Or install permanently:
+
+```bash
+pip install google-fonts-mcp
+```
+
+### Claude Code Plugin
+
+```bash
+claude plugin marketplace add sliday/google-fonts-skill
 claude plugin install google-fonts
 ```
 
@@ -100,29 +109,31 @@ Regenerate with:
 python3 scripts/generate-showcase.py
 ```
 
+## MCP Tools
+
+| Tool | Description |
+|------|-------------|
+| `search_fonts` | Search fonts by mood/use-case. Modes: single, pair, scale |
+| `generate_typography_system` | Full CSS + Tailwind + embed from font + scale |
+| `lookup_font` | Get full metadata for a specific font |
+| `list_scales` | All 8 typographic scales |
+| `list_pairings` | All 73 proven pairings (filterable by contrast type) |
+
 ## Project Structure
 
 ```
-├── SKILL.md                          # Claude Code skill definition
-├── CLAUDE.md                         # Project instructions
-├── data/
-│   ├── fonts.csv                     # Enriched font database
-│   ├── pairings.csv                  # Proven font pairings
-│   └── scales.csv                    # Modular type scales
-├── scripts/
+├── src/google_fonts_mcp/             # MCP server (PyPI package)
+│   ├── server.py                     # FastMCP server with 5 tools
 │   ├── core.py                       # Search engine + CSS generation
-│   ├── search.py                     # CLI search interface
-│   ├── generate-css.py               # CSS/Tailwind CLI wrapper
-│   ├── generate-showcase.py          # Showcase gallery generator
-│   ├── fetch-and-enrich.py           # Font data enrichment pipeline
-│   └── build-pairings.py             # Pairing data builder
-├── showcase/
-│   ├── index.html                    # Browsable gallery (100 cards)
-│   ├── showcase.json                 # Machine-readable manifest
-│   └── pages/                        # 100 individual HTML previews
-└── references/
-    ├── typographic-rhythm.md         # Scale math and spacing rules
-    └── pairing-principles.md         # Contrast theory and decision trees
+│   └── data/                         # Bundled font data
+├── SKILL.md                          # Claude Code skill definition
+├── data/                             # Canonical font data (CSV)
+├── scripts/                          # CLI tools + generators
+├── showcase/                         # 100-project gallery + SEO
+│   ├── llms-full.txt                 # Agent-readable full reference
+│   └── pages/                        # Individual HTML previews
+├── tests/                            # pytest suite
+└── registry/                         # MCP registry submission files
 ```
 
 ## License
