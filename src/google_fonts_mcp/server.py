@@ -1,5 +1,7 @@
 """Google Fonts MCP Server — Typography system generator for agents."""
 
+import sys
+
 from fastmcp import FastMCP
 
 from google_fonts_mcp.core import (
@@ -14,6 +16,56 @@ from google_fonts_mcp.core import (
 )
 
 mcp = FastMCP("google-fonts")
+
+
+def _print_banner():
+    try:
+        from rich.console import Console
+        from rich.panel import Panel
+        from rich.table import Table
+        from rich.text import Text
+
+        console = Console(stderr=True)
+
+        fonts = _load_csv("fonts")
+        pairings = _load_csv("pairings")
+        body_suitable = sum(1 for f in fonts if f.get("Body_Suitable") == "Yes")
+        tier_a = sum(1 for f in fonts if f.get("Quality_Tier") == "A")
+
+        tools = Table(show_header=False, box=None, padding=(0, 2, 0, 0))
+        tools.add_column(style="cyan bold", min_width=30)
+        tools.add_column(style="dim")
+        tools.add_row("search_fonts", "Search by mood, use case, or style")
+        tools.add_row("generate_typography_system", "CSS + Tailwind + embed link")
+        tools.add_row("lookup_font", "Full metadata for any font")
+        tools.add_row("list_scales", "8 modular type scales")
+        tools.add_row("list_pairings", "73 proven font pairs")
+
+        stats = Text()
+        stats.append(f"  {len(fonts):,}", style="bold white")
+        stats.append(" fonts  ", style="dim")
+        stats.append(f"{len(pairings)}", style="bold white")
+        stats.append(" pairings  ", style="dim")
+        stats.append(f"{len(SCALES)}", style="bold white")
+        stats.append(" scales  ", style="dim")
+        stats.append(f"{tier_a}", style="bold white")
+        stats.append(" tier-A  ", style="dim")
+        stats.append(f"{body_suitable}", style="bold white")
+        stats.append(" body-suitable", style="dim")
+
+        from rich.console import Group
+        content = Group(stats, Text(), tools)
+
+        panel = Panel(
+            content,
+            title="[bold]google-fonts-mcp[/bold]",
+            subtitle="[dim]Waiting for MCP client connection (stdio)[/dim]",
+            border_style="blue",
+            padding=(1, 2),
+        )
+        console.print(panel)
+    except ImportError:
+        print("google-fonts-mcp | 1,923 fonts | 73 pairings | 5 tools | waiting for connection...", file=sys.stderr)
 
 
 @mcp.tool
@@ -91,6 +143,7 @@ def list_pairings(category: str | None = None) -> list[dict]:
 
 
 def main():
+    _print_banner()
     mcp.run()
 
 

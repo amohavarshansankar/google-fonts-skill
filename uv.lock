@@ -389,14 +389,18 @@ wheels = [
 
 [[package]]
 name = "google-fonts-mcp"
-version = "1.0.0"
+version = "1.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastmcp" },
+    { name = "rich" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "fastmcp", specifier = ">=2.0.0" }]
+requires-dist = [
+    { name = "fastmcp", specifier = ">=2.0.0" },
+    { name = "rich", specifier = ">=13.0.0" },
+]
 
 [[package]]
 name = "h11"
