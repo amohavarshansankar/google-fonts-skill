@@ -11,7 +11,14 @@ Claude Code skill for typography system generation using Google Fonts. Searches 
 - **Pair mode** — 73 proven pairings with contrast type classification
 - **CSS generation** — custom properties, Tailwind config, Google Fonts embed links
 - **8 modular scales** — from minor-second (dense UI) to golden-ratio (hero sections)
-- **100-project showcase** — browsable gallery of pre-made typography systems
+- **100-project showcase** — [browsable gallery](https://sliday.github.io/google-fonts-skill/) of pre-made typography systems
+
+## How It Works
+
+1. Tell Claude what you're building (SaaS, blog, e-commerce...)
+2. Skill searches 1,923 fonts or 73 proven pairings
+3. Pick a font + scale → get CSS custom properties, Tailwind config, and embed link
+4. Ship
 
 ## Installation
 
@@ -83,7 +90,9 @@ python3 scripts/generate-css.py --heading "Playfair Display" --body "Inter" \
 
 ## Showcase Gallery
 
-100 pre-made typography systems applied to fictional projects. Open `showcase/index.html` to browse, or reference `showcase/showcase.json` programmatically.
+**[Browse 100 Typography Systems →](https://sliday.github.io/google-fonts-skill/)**
+
+100 pre-made typography systems applied to fictional projects — SaaS dashboards, editorial blogs, luxury brands, gaming sites, and more. Each page renders live with actual Google Fonts.
 
 Regenerate with:
 

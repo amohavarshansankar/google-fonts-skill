@@ -322,12 +322,37 @@ def generate_html_page(project):
     for tier in reversed(TIERS):
         tiers_html += f'    <div style="font-size:var(--font-size-{tier});line-height:var(--line-height-{tier});letter-spacing:var(--letter-spacing-{tier});margin-bottom:0.5em;font-family:var(--font-heading, var(--font-body))"><span style="color:{muted};font-size:0.75rem;display:inline-block;width:3rem">{tier}</span> The quick brown fox</div>\n'
 
+    BASE_URL = "https://sliday.github.io/google-fonts-skill"
+    og_desc = f"{font_label} | {scale_name} scale | {ptype}"
+    og_img = f"{BASE_URL}/og/{p['id']}.png"
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{escape(p['name'])} — Typography Preview</title>
+<meta name="description" content="{escape(og_desc)} — Pre-made typography system using Google Fonts">
+<link rel="canonical" href="{BASE_URL}/pages/{p['id']}.html">
+<meta property="og:title" content="{escape(p['name'])} — Typography Preview">
+<meta property="og:description" content="{escape(og_desc)}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{BASE_URL}/pages/{p['id']}.html">
+<meta property="og:image" content="{og_img}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{escape(p['name'])} — Typography Preview">
+<meta name="twitter:description" content="{escape(og_desc)}">
+<meta name="twitter:image" content="{og_img}">
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{escape(p['name'])} — Typography Preview",
+  "description": "{escape(og_desc)}",
+  "url": "{BASE_URL}/pages/{p['id']}.html",
+  "isPartOf": {{ "@type": "WebSite", "name": "Google Fonts Skill Showcase", "url": "{BASE_URL}/" }}
+}}
+</script>
 {embed}
 <style>
 {css_vars}
@@ -412,12 +437,36 @@ def generate_index(projects):
     for t in types:
         filter_buttons += f'      <button class="filter-btn" data-filter="{t}">{t}</button>\n'
 
+    BASE_URL = "https://sliday.github.io/google-fonts-skill"
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Google Fonts Skill — Showcase Gallery</title>
+<title>Google Fonts Skill — 100 Typography Systems</title>
+<meta name="description" content="Browse 100 pre-made typography systems using Google Fonts. Font pairings, modular scales, CSS custom properties, and Tailwind configs — ready to use.">
+<link rel="canonical" href="{BASE_URL}/">
+<meta property="og:title" content="Google Fonts Skill — 100 Typography Systems">
+<meta property="og:description" content="Browse 100 pre-made typography systems with live Google Fonts previews. Font pairings, type scales, CSS + Tailwind output.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{BASE_URL}/">
+<meta property="og:image" content="{BASE_URL}/og/gallery.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Google Fonts Skill — 100 Typography Systems">
+<meta name="twitter:description" content="100 pre-made typography systems with live Google Fonts previews">
+<meta name="twitter:image" content="{BASE_URL}/og/gallery.png">
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Google Fonts Skill — Showcase Gallery",
+  "description": "100 pre-made typography systems using Google Fonts",
+  "url": "{BASE_URL}/",
+  "numberOfItems": {len(projects)},
+  "provider": {{ "@type": "Organization", "name": "sliday", "url": "https://github.com/sliday" }}
+}}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts_url}" rel="stylesheet">
@@ -515,9 +564,47 @@ def main():
         json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8"
     )
 
+    # Generate sitemap.xml
+    BASE_URL = "https://sliday.github.io/google-fonts-skill"
+    sitemap_lines = ['<?xml version="1.0" encoding="UTF-8"?>']
+    sitemap_lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+    sitemap_lines.append(f"  <url><loc>{BASE_URL}/</loc><priority>1.0</priority></url>")
+    for p in projects:
+        sitemap_lines.append(f"  <url><loc>{BASE_URL}/pages/{p['id']}.html</loc><priority>0.7</priority></url>")
+    sitemap_lines.append("</urlset>")
+    (SHOWCASE_DIR / "sitemap.xml").write_text("\n".join(sitemap_lines), encoding="utf-8")
+
+    # Generate robots.txt
+    robots = f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n"
+    (SHOWCASE_DIR / "robots.txt").write_text(robots, encoding="utf-8")
+
+    # Generate llms.txt (LLM-friendly discovery)
+    llms_lines = [
+        "# Google Fonts Skill — Showcase Gallery",
+        "",
+        "100 pre-made typography systems using Google Fonts.",
+        "Each project includes CSS custom properties, Tailwind config, and Google Fonts embed links.",
+        "",
+        "## Gallery Index",
+        f"- {BASE_URL}/",
+        "",
+        "## Machine-Readable Data",
+        f"- {BASE_URL}/showcase.json",
+        "",
+        "## Project Types",
+        "saas, blog, ecommerce, marketing, portfolio, documentation, enterprise, luxury, wellness, education, gaming, restaurant, creative",
+        "",
+        "## Individual Projects",
+    ]
+    for p in projects:
+        font_label = p["heading_font"] if p["heading_font"] == p["body_font"] else f'{p["heading_font"]} + {p["body_font"]}'
+        llms_lines.append(f"- {p['name']}: {font_label} | {p['scale']} | {BASE_URL}/pages/{p['id']}.html")
+    (SHOWCASE_DIR / "llms.txt").write_text("\n".join(llms_lines), encoding="utf-8")
+
     print(f"Generated {len(projects)} pages in {PAGES_DIR}", file=sys.stderr)
     print(f"Gallery index: {SHOWCASE_DIR / 'index.html'}", file=sys.stderr)
     print(f"Manifest: {SHOWCASE_DIR / 'showcase.json'}", file=sys.stderr)
+    print(f"SEO: sitemap.xml, robots.txt, llms.txt", file=sys.stderr)
 
 
 if __name__ == "__main__":
