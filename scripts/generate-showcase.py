@@ -417,16 +417,24 @@ def generate_index(projects):
     # Collect unique project types for filter
     types = sorted(set(p["type"] for p in projects))
 
+    TYPE_COLORS = {
+        "blog": "#8B5CF6", "creative": "#A855F7", "documentation": "#06B6D4",
+        "ecommerce": "#10B981", "education": "#F59E0B", "enterprise": "#6366F1",
+        "gaming": "#EF4444", "luxury": "#E11D48", "marketing": "#F97316",
+        "portfolio": "#EC4899", "restaurant": "#14B8A6", "saas": "#3B82F6",
+        "wellness": "#10B981",
+    }
+
     cards_html = ""
     for p in projects:
-        accent = accent_for(p["name"])
         dark = is_dark(p["mood"])
         card_bg = "#1a1a1a" if dark else "#fff"
         card_fg = "#e5e5e5" if dark else "#1a1a1a"
         muted = "#888" if dark else "#666"
+        badge_color = TYPE_COLORS.get(p["type"], "#3B82F6")
         font_label = p["heading_font"] if p["heading_font"] == p["body_font"] else f'{p["heading_font"]} + {p["body_font"]}'
         cards_html += f"""    <a href="pages/{p['id']}.html" class="card" data-type="{p['type']}" style="background:{card_bg};color:{card_fg}">
-      <span class="card-badge" style="background:{accent}">{escape(p['type'])}</span>
+      <span class="card-badge" style="background:{badge_color}">{escape(p['type'])}</span>
       <h3 style="font-family:'{escape(p['heading_font'])}',sans-serif">{escape(p['name'])}</h3>
       <p class="card-fonts" style="color:{muted}">{escape(font_label)}</p>
       <p class="card-scale" style="color:{muted}">{escape(p['scale'])}</p>
