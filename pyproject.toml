@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "google-fonts-mcp"
-version = "1.2.0"
+version = "1.3.0"
 description = "MCP server for Google Fonts typography system generation"
 readme = "README.md"
 license = "MIT"
@@ -27,6 +27,8 @@ google-fonts-mcp = "google_fonts_mcp.server:main"
 Homepage = "https://github.com/sliday/google-fonts-skill"
 Repository = "https://github.com/sliday/google-fonts-skill"
 Documentation = "https://sliday.github.io/google-fonts-skill/"
+"Gallery" = "https://sliday.github.io/google-fonts-skill/"
+"Agent Reference" = "https://sliday.github.io/google-fonts-skill/llms-full.txt"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/google_fonts_mcp"]

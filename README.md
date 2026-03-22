@@ -1,6 +1,6 @@
-# Google Fonts Skill
+# Google Fonts MCP
 
-Claude Code skill for typography system generation using Google Fonts. Searches 1,923 enriched fonts, suggests singles or pairs, and generates complete CSS/Tailwind typographic systems.
+MCP server and Claude Code skill for typography system generation using Google Fonts. Searches 1,923 enriched fonts, suggests singles or pairs, and generates complete CSS/Tailwind typographic systems.
 
 ![CleanShot 2026-03-21 at 19 08 00](https://github.com/user-attachments/assets/937a8a6c-d6ab-4f39-bfa4-848450932b32)
 
@@ -34,17 +34,56 @@ Or install permanently:
 pip install google-fonts-mcp
 ```
 
-### Claude Code Plugin
+### Claude Code
+
+```bash
+claude mcp add google-fonts -- uvx google-fonts-mcp
+```
+
+Or as a plugin:
 
 ```bash
 claude plugin marketplace add sliday/google-fonts-skill
 claude plugin install google-fonts
 ```
 
-### Manual
+### Cursor
 
-```bash
-git clone https://github.com/sliday/google-fonts-skill.git ~/.claude/skills/google-fonts
+Add to `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "google-fonts": {
+      "command": "uvx",
+      "args": ["google-fonts-mcp"]
+    }
+  }
+}
+```
+
+### Windsurf
+
+Add to `~/.codeium/windsurf/mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "google-fonts": {
+      "command": "uvx",
+      "args": ["google-fonts-mcp"]
+    }
+  }
+}
+```
+
+### Any MCP Client
+
+```json
+{
+  "command": "uvx",
+  "args": ["google-fonts-mcp"]
+}
 ```
 
 ## Usage
